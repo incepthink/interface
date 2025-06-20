@@ -66,6 +66,7 @@ export const MarketAssetsListContainer = () => {
         res.underlyingAsset.toLowerCase().includes(term)
       );
     })
+    .filter((res) => ['ETH', 'WBTC', 'rsETH', 'WeTH'].includes(res.symbol))
     // Transform the object for list to consume it
     .map((reserve) => ({
       ...reserve,

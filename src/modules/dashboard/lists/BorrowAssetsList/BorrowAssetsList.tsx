@@ -78,6 +78,8 @@ const head = [
   },
 ];
 
+const allowedSymbols = ['ETH', 'WBTC', 'rsETH', 'WeTH'];
+
 export const BorrowAssetsList = () => {
   const [currentNetworkConfig, currentMarket] = useRootStore(
     useShallow((store) => [store.currentNetworkConfig, store.currentMarket])
@@ -92,6 +94,7 @@ export const BorrowAssetsList = () => {
 
   const tokensToBorrow = reserves
     .filter((reserve) => (user ? assetCanBeBorrowedByUser(reserve, user) : false))
+    .filter((reserve) => allowedSymbols.includes(reserve.symbol))
     .map((reserve: ComputedReserveData) => {
       const availableBorrows = user ? Number(getMaxAmountAvailableToBorrow(reserve, user)) : 0;
 
