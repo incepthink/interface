@@ -8,6 +8,7 @@ import { FORK_ENABLED } from 'src/utils/marketsAndNetworksConfig';
 import { AppFooter } from './AppFooter';
 import { AppHeader } from './AppHeader';
 import TopBarNotify from './TopBarNotify';
+// import ellipse from "../../public/ellipse-home.png"
 
 // const SwitchIcon = () => (
 //   <svg
@@ -38,6 +39,7 @@ export function MainLayout({ children }: { children: ReactNode }) {
       />
 
       <AppHeader />
+
       <Box component="main" sx={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
         {children}
       </Box>

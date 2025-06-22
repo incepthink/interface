@@ -6,7 +6,7 @@ import Link from 'next/link';
 import * as React from 'react';
 import { useState } from 'react';
 import { NetAPYTooltip } from 'src/components/infoTooltips/NetAPYTooltip';
-import { getMarketInfoById } from 'src/components/MarketSwitcher';
+// import { getMarketInfoById } from 'src/components/MarketSwitcher';
 import { FormattedNumber } from 'src/components/primitives/FormattedNumber';
 import { ROUTES } from 'src/components/primitives/Link';
 import { PageTitle } from 'src/components/TopInfoPanel/PageTitle';
@@ -44,7 +44,7 @@ export const DashboardTopPanel = () => {
       selectIsMigrationAvailable(store),
     ])
   );
-  const { market } = getMarketInfoById(currentMarket);
+  // const { market } = getMarketInfoById(currentMarket);
   const showMigrateButton = user
     ? isMigrateToV3Available && currentAccount !== '' && Number(user.totalLiquidityUSD) > 0
     : false;
@@ -105,7 +105,7 @@ export const DashboardTopPanel = () => {
 
   return (
     <>
-      {showMigrateButton && downToSM && (
+      {/* {showMigrateButton && downToSM && (
         <Box sx={{ width: '100%' }}>
           <Link href={ROUTES.migrationTool}>
             <Button
@@ -121,7 +121,7 @@ export const DashboardTopPanel = () => {
             </Button>
           </Link>
         </Box>
-      )}
+      )} */}
       <TopInfoPanel
         titleComponent={
           <Box sx={{ display: 'flex', alignItems: 'center' }}>

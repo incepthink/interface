@@ -13,15 +13,19 @@ export const ListHeaderWrapper = ({ px = 4, children, ...rest }: ListHeaderWrapp
       sx={{
         display: 'flex',
         alignItems: 'flex-end',
+        justifyContent: 'space-between',
         px,
         pt: 4,
-        pb: 1,
+        pb: 1.5,
         position: 'sticky',
         top: 0,
         zIndex: 100,
-        bgcolor: 'background.paper',
-        borderBottom: '1px solid',
-        borderColor: 'divider',
+        // borderRadius: '12px',
+        backgroundColor: 'rgba(5, 5, 18, 0.6)', // #050512 with 60% opacity
+        border: '1px solid rgba(174, 174, 174, 0.2)', // subtle border
+        boxShadow: 'inset 0px 4px 34px rgba(0, 255, 233, 0.4)', // neon teal inner glow
+        backdropFilter: 'blur(4px)',
+        WebkitBackdropFilter: 'blur(4px)',
         ...rest.sx,
       }}
     >

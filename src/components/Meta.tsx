@@ -9,7 +9,7 @@ type MetaProps = {
 };
 
 export function Meta({ title, description, imageUrl, timestamp }: MetaProps) {
-  const formattedTitle = `Aave - ${title}`;
+  const formattedTitle = `AggTrade - Lending/Borrowing`;
   return (
     <Head>
       <title>{formattedTitle}</title>{' '}

@@ -26,6 +26,25 @@ export default class MyDocument extends Document {
           }
         </Head>
         <body>
+          <div
+            style={{
+              inset: 0,
+              position: 'fixed',
+              zIndex: -1,
+              overflow: 'hidden',
+            }}
+          >
+            <img
+              src="/ellipse-home.png"
+              alt=""
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'top',
+              }}
+            />
+          </div>
           <Main />
           <NextScript />
         </body>

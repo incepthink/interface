@@ -92,8 +92,12 @@ export const ListWrapper = ({
     <Paper
       sx={{
         mt: withTopMargin ? 4 : 0,
-        border: 1,
-        borderColor: 'divider',
+        borderRadius: '12px',
+        border: '1px solid rgba(174, 174, 174, 0.2)', // #AEAEAE 20%
+        backgroundColor: '#05051299', // #050512 with ~60% opacity
+        boxShadow: 'inset 0px 4px 34px #00FFE966', // teal glow inner shadow
+        backdropFilter: 'blur(4px)', // for glassy effect
+        WebkitBackdropFilter: 'blur(4px)',
         ...paperSx,
       }}
     >
