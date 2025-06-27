@@ -23,9 +23,11 @@ export const ConnectWalletPaper = ({ description, sx, ...rest }: ConnectWalletPa
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        p: 4,
+        p: 10,
         flex: 1,
         ...sx,
+        backgroundColor: 'transparent',
+        boxShadow: 'inset 0px 4px 34px rgba(0, 255, 233, 0.4)',
       }}
     >
       <Box>

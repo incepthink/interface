@@ -241,7 +241,10 @@ export const SupplyAssetsListItemDesktop = ({
       <ListButtonsColumn>
         <Button
           disabled={disableSupply}
-          variant="contained"
+          sx={{
+            border: '1px solid rgba(0, 255, 233, 0.5)',
+            backgroundColor: 'rgba(0, 255, 233, 0.3)',
+          }}
           onClick={() => {
             openSupply(underlyingAsset, currentMarket, name, 'dashboard');
           }}
@@ -253,8 +256,10 @@ export const SupplyAssetsListItemDesktop = ({
           sx={{
             minWidth: 0,
             px: 4,
+            border: '1px solid rgba(0, 255, 233, 0.5)',
+            backgroundColor: 'transparent',
+            color: 'rgba(0, 255, 233, 1)',
           }}
-          variant="outlined"
           onClick={handleClick}
           aria-controls={open ? 'basic-menu' : undefined}
           aria-haspopup="true"

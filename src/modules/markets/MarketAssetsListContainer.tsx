@@ -15,7 +15,7 @@ import { getGhoReserve, GHO_MINTING_MARKETS, GHO_SYMBOL } from 'src/utils/ghoUti
 import { useShallow } from 'zustand/shallow';
 
 import { GENERAL } from '../../utils/events';
-import { SavingsGhoBanner } from './Gho/GhoBanner';
+// import { SavingsGhoBanner } from './Gho/GhoBanner';
 
 function shouldDisplayGhoBanner(marketTitle: string, searchTerm: string): boolean {
   // GHO banner is only displayed on markets where new GHO is mintable (i.e. Ethereum)
@@ -66,7 +66,9 @@ export const MarketAssetsListContainer = () => {
         res.underlyingAsset.toLowerCase().includes(term)
       );
     })
-    .filter((res) => ['ETH', 'WBTC', 'rsETH', 'WeTH'].includes(res.symbol))
+    .filter((res) =>
+      ['UNI', 'WBTC', 'USDT', 'WETH', 'ETH', 'USDC', 'USDe', 'BAL', 'ENS'].includes(res.symbol)
+    )
     // Transform the object for list to consume it
     .map((reserve) => ({
       ...reserve,
@@ -103,11 +105,11 @@ export const MarketAssetsListContainer = () => {
         />
       }
     >
-      {displayGhoBanner && (
+      {/* {displayGhoBanner && (
         <Box mb={4}>
           <SavingsGhoBanner reserve={ghoReserve} />
         </Box>
-      )}
+      )} */}
 
       {/* Unfrozen assets list */}
       <MarketAssetsList reserves={unfrozenReserves} loading={loading} />

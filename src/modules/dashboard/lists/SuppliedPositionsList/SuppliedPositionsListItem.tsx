@@ -6,7 +6,7 @@ import { useAssetCaps } from 'src/hooks/useAssetCaps';
 import { useModalContext } from 'src/hooks/useModal';
 import { useRootStore } from 'src/store/root';
 import { DashboardReserve } from 'src/utils/dashboardSortUtils';
-import { GENERAL } from 'src/utils/events';
+// import { GENERAL } from 'src/utils/events';
 import { showExternalIncentivesTooltip } from 'src/utils/utils';
 import { useShallow } from 'zustand/shallow';
 
@@ -27,9 +27,9 @@ export const SuppliedPositionsListItem = ({
 }: DashboardReserve) => {
   const { user } = useAppDataContext();
   const { isIsolated, aIncentivesData, aTokenAddress, isFrozen, isActive, isPaused } = reserve;
-  const { openSupply, openWithdraw, openCollateralChange, openSwap } = useModalContext();
+  const { openSupply, openWithdraw, openCollateralChange } = useModalContext();
   const { debtCeiling } = useAssetCaps();
-  const [trackEvent, currentMarketData, currentMarket] = useRootStore(
+  const [_, currentMarketData, currentMarket] = useRootStore(
     useShallow((store) => [store.trackEvent, store.currentMarketData, store.currentMarket])
   );
 
@@ -43,7 +43,7 @@ export const SuppliedPositionsListItem = ({
         (reserve.isIsolated && user.totalCollateralMarketReferenceCurrency === '0'))
     : false;
 
-  const disableSwap = !isActive || isPaused || reserve.symbol == 'stETH';
+  // const disableSwap = !isActive || isPaused || reserve.symbol == 'stETH';
   const disableWithdraw = !isActive || isPaused;
   const disableSupply = !isActive || isFrozen || isPaused;
 
@@ -104,28 +104,35 @@ export const SuppliedPositionsListItem = ({
 
       <ListButtonsColumn>
         {showSwitchButton ? (
-          <Button
-            disabled={disableSwap}
-            variant="contained"
-            onClick={() => {
-              // track
+          // <Button
+          //   disabled={disableSwap}
+          //   sx={{
+          //     border: '1px solid rgba(0, 255, 233, 0.5)',
+          //     backgroundColor: 'rgba(0, 255, 233, 0.3)',
+          //   }}
+          //   onClick={() => {
+          //     // track
 
-              trackEvent(GENERAL.OPEN_MODAL, {
-                modal: 'Swap Collateral',
-                market: currentMarket,
-                assetName: reserve.name,
-                asset: underlyingAsset,
-              });
-              openSwap(underlyingAsset);
-            }}
-            data-cy={`swapButton`}
-          >
-            <Trans>Swap</Trans>
-          </Button>
+          //     trackEvent(GENERAL.OPEN_MODAL, {
+          //       modal: 'Swap Collateral',
+          //       market: currentMarket,
+          //       assetName: reserve.name,
+          //       asset: underlyingAsset,
+          //     });
+          //     openSwap(underlyingAsset);
+          //   }}
+          //   data-cy={`swapButton`}
+          // >
+          //   <Trans>Swap</Trans>
+          // </Button>
+          <></>
         ) : (
           <Button
             disabled={disableSupply}
-            variant="contained"
+            sx={{
+              border: '1px solid rgba(0, 255, 233, 0.5)',
+              backgroundColor: 'rgba(0, 255, 233, 0.3)',
+            }}
             onClick={() => openSupply(underlyingAsset, currentMarket, reserve.name, 'dashboard')}
           >
             <Trans>Supply</Trans>
@@ -133,7 +140,11 @@ export const SuppliedPositionsListItem = ({
         )}
         <Button
           disabled={disableWithdraw}
-          variant="outlined"
+          sx={{
+            border: '1px solid rgba(0, 255, 233, 0.5)',
+            backgroundColor: 'transparent',
+            color: 'rgba(0, 255, 233, 1)',
+          }}
           onClick={() => {
             openWithdraw(underlyingAsset, currentMarket, reserve.name, 'dashboard');
           }}

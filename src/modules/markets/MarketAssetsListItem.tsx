@@ -147,7 +147,10 @@ export const MarketAssetsListItem = ({ ...reserve }: ComputedReserveData) => {
 
       <ListColumn minWidth={95} maxWidth={95} align="right">
         <Button
-          variant="outlined"
+          sx={{
+            border: '1px solid rgba(0, 255, 233, 0.5)',
+            backgroundColor: 'rgba(0, 255, 233, 0.3)',
+          }}
           component={Link}
           href={ROUTES.reserveOverview(reserve.underlyingAsset, currentMarket)}
           onClick={() =>

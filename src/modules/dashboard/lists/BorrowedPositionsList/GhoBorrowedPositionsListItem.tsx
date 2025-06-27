@@ -176,20 +176,35 @@ const GhoBorrowedPositionsListItemDesktop = ({
       </ListColumn>
       <ListButtonsColumn>
         {showSwitchButton ? (
-          <Button
-            disabled={disableSwitch}
-            variant="contained"
-            onClick={onSwitchClick}
-            data-cy={`swapButton`}
-          >
-            <Trans>Swap</Trans>
-          </Button>
+          // <Button
+          //   disabled={disableSwitch}
+          //   variant="contained"
+          //   onClick={onSwitchClick}
+          //   data-cy={`swapButton`}
+          // >
+          //   <Trans>Swap</Trans>
+          // </Button>
+          <></>
         ) : (
-          <Button disabled={borrowDisabled} variant="outlined" onClick={onBorrowClick}>
+          <Button
+            disabled={borrowDisabled}
+            sx={{
+              border: '1px solid rgba(0, 255, 233, 0.5)',
+              backgroundColor: 'rgba(0, 255, 233, 0.3)',
+            }}
+            onClick={onBorrowClick}
+          >
             <Trans>Borrow</Trans>
           </Button>
         )}
-        <Button disabled={disableRepay} variant="outlined" onClick={onRepayClick}>
+        <Button
+          disabled={disableRepay}
+          sx={{
+            border: '1px solid rgba(0, 255, 233, 0.5)',
+            backgroundColor: 'rgba(0, 255, 233, 0.3)',
+          }}
+          onClick={onRepayClick}
+        >
           <Trans>Repay</Trans>
         </Button>
       </ListButtonsColumn>

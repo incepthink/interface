@@ -353,9 +353,9 @@ export function AppHeader() {
           <ConnectWalletButton />
         )}
 
-        <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+        {/* <Box sx={{ display: { xs: 'none', md: 'block' } }}>
           <SettingsMenu />
-        </Box>
+        </Box> */}
 
         {!walletWidgetOpen && (
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>

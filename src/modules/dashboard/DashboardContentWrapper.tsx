@@ -101,7 +101,10 @@ export const DashboardContentWrapper = ({ isBorrow }: DashboardContentWrapperPro
                   trackEvent(AUTH.VIEW_TX_HISTORY);
                 }}
                 component="a"
-                variant="surface"
+                sx={{
+                  border: '1px solid rgba(0, 255, 233, 0.5)',
+                  backgroundColor: 'rgba(0, 255, 233, 0.3)',
+                }}
                 size="small"
               >
                 <Trans>View Transactions</Trans>

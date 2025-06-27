@@ -78,7 +78,10 @@ export const BorrowAssetsListItem = ({
       <ListButtonsColumn>
         <Button
           disabled={disableBorrow}
-          variant="contained"
+          sx={{
+            border: '1px solid rgba(0, 255, 233, 0.5)',
+            backgroundColor: 'rgba(0, 255, 233, 0.3)',
+          }}
           onClick={() => {
             openBorrow(underlyingAsset, currentMarket, name, 'dashboard');
           }}
@@ -86,7 +89,11 @@ export const BorrowAssetsListItem = ({
           <Trans>Borrow</Trans>
         </Button>
         <Button
-          variant="outlined"
+          sx={{
+            border: '1px solid rgba(0, 255, 233, 0.5)',
+            backgroundColor: 'transparent',
+            color: 'rgba(0, 255, 233, 1)',
+          }}
           component={Link}
           href={ROUTES.reserveOverview(underlyingAsset, currentMarket)}
           onClick={() => {

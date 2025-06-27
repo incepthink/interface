@@ -22,7 +22,16 @@ export const ConnectWalletButton: React.FC<ConnectWalletProps> = ({ funnel, onCl
         {({ isConnected, show }) => {
           return (
             <Button
-              variant={isConnected ? 'surface' : 'gradient'}
+              // variant={isConnected ? 'surface' : 'gradient'}
+              sx={{
+                backgroundColor: '#00F5E0',
+                color: 'black',
+                '&:hover': {
+                  backgroundColor: '#00FAFF', // new bg on hover
+                  color: '#000', // text colour on hover
+                  boxShadow: '0 0 8px #00FAFF', // glow on hover (optional)
+                },
+              }}
               onClick={() => {
                 onClick && onClick();
                 show && show();

@@ -25,7 +25,7 @@ import {
   handleSortDashboardReserves,
 } from '../../../../utils/dashboardSortUtils';
 import { DashboardContentNoData } from '../../DashboardContentNoData';
-import { DashboardEModeButton } from '../../DashboardEModeButton';
+// import { DashboardEModeButton } from '../../DashboardEModeButton';
 import { ListButtonsColumn } from '../ListButtonsColumn';
 import { ListLoader } from '../ListLoader';
 import { ListTopInfoItem } from '../ListTopInfoItem';
@@ -55,7 +55,7 @@ export const BorrowedPositionsList = () => {
   const [sortDesc, setSortDesc] = useState(false);
   const theme = useTheme();
   const downToXSM = useMediaQuery(theme.breakpoints.down('xsm'));
-  const showEModeButton = currentMarketData.v3 && Object.keys(eModes).length > 1;
+  // const showEModeButton = currentMarketData.v3 && Object.keys(eModes).length > 1;
   const [tooltipOpen, setTooltipOpen] = useState<boolean>(false);
 
   if (loading || !user)
@@ -148,11 +148,11 @@ export const BorrowedPositionsList = () => {
         </Typography>
       }
       localStorageName="borrowedAssetsDashboardTableCollapse"
-      subTitleComponent={
-        showEModeButton ? (
-          <DashboardEModeButton userEmodeCategoryId={user ? user.userEmodeCategoryId : 0} />
-        ) : undefined
-      }
+      // subTitleComponent={
+      //   showEModeButton ? (
+      //     <DashboardEModeButton userEmodeCategoryId={user ? user.userEmodeCategoryId : 0} />
+      //   ) : undefined
+      // }
       noData={!sortedReserves.length}
       topInfo={
         <>
