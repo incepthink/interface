@@ -29,7 +29,7 @@ export const SuppliedPositionsListItem = ({
   const { isIsolated, aIncentivesData, aTokenAddress, isFrozen, isActive, isPaused } = reserve;
   const { openSupply, openWithdraw, openCollateralChange } = useModalContext();
   const { debtCeiling } = useAssetCaps();
-  const [_, currentMarketData, currentMarket] = useRootStore(
+  const [, currentMarketData, currentMarket] = useRootStore(
     useShallow((store) => [store.trackEvent, store.currentMarketData, store.currentMarket])
   );
 

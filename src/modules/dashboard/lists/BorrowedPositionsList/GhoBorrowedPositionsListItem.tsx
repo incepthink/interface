@@ -124,9 +124,7 @@ const GhoBorrowedPositionsListItemDesktop = ({
   borrowDisabled,
   onRepayClick,
   onBorrowClick,
-  onSwitchClick,
   showSwitchButton,
-  disableSwitch,
   disableRepay,
 }: GhoBorrowedPositionsListItemProps) => {
   const { symbol, iconSymbol, name, isFrozen, underlyingAsset } = reserve;

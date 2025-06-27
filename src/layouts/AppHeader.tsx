@@ -35,7 +35,6 @@ import { Link } from '../components/primitives/Link';
 import { uiConfig } from '../uiConfig';
 import { NavItems } from './components/NavItems';
 import { MobileMenu } from './MobileMenu';
-import { SettingsMenu } from './SettingsMenu';
 
 interface Props {
   children: React.ReactElement;

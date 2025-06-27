@@ -102,7 +102,6 @@ interface BorrowedPositionsListItemProps extends DashboardReserve {
 const BorrowedPositionsListItemDesktop = ({
   reserve,
   disableBorrow,
-  disableSwitch,
   disableRepay,
   showSwitchButton,
   totalBorrows,
@@ -110,7 +109,6 @@ const BorrowedPositionsListItemDesktop = ({
   borrowAPY,
   variableDebtTokenAddress,
   incentives,
-  onDetbSwitchClick,
   onOpenBorrow,
   onOpenRepay,
 }: BorrowedPositionsListItemProps) => {

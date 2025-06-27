@@ -47,7 +47,7 @@ const head = [
 ];
 
 export const BorrowedPositionsList = () => {
-  const { user, loading, eModes, reserves } = useAppDataContext();
+  const { user, loading, reserves } = useAppDataContext();
   const [currentMarketData, currentNetworkConfig] = useRootStore(
     useShallow((store) => [store.currentMarketData, store.currentNetworkConfig])
   );
@@ -57,7 +57,8 @@ export const BorrowedPositionsList = () => {
   const downToXSM = useMediaQuery(theme.breakpoints.down('xsm'));
   // const showEModeButton = currentMarketData.v3 && Object.keys(eModes).length > 1;
   const [tooltipOpen, setTooltipOpen] = useState<boolean>(false);
-
+  if (currentMarketData) {
+  }
   if (loading || !user)
     return <ListLoader title={<Trans>Your borrows</Trans>} head={head.map((c) => c.title)} />;
 
