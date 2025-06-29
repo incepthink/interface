@@ -2,14 +2,11 @@ import { Trans } from '@lingui/macro';
 import React, { useState } from 'react';
 import { UserAuthenticated } from 'src/components/UserAuthenticated';
 import { ModalContextType, ModalType, useModalContext } from 'src/hooks/useModal';
-// import { useRootStore } from 'src/store/root';
-// import { isFeatureEnabled } from 'src/utils/marketsAndNetworksConfig';
 
 import { BasicModal } from '../../primitives/BasicModal';
 import { ModalWrapper } from '../FlowCommons/ModalWrapper';
-// import { WithdrawAndSwitchModalContent } from './WithdrawAndSwitchModalContent';
 import { WithdrawModalContent } from './WithdrawModalContent';
-import { WithdrawType } from './WithdrawTypeSelector'; //WithdrawTypeSelector
+import { WithdrawType } from './WithdrawTypeSelector';
 
 export const WithdrawModal = () => {
   const { type, close, args } = useModalContext() as ModalContextType<{

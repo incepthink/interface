@@ -1,6 +1,6 @@
 import { DuplicateIcon, RefreshIcon } from '@heroicons/react/outline';
 import { Trans } from '@lingui/macro';
-import { Box, Button, Link, Paper, SvgIcon, Typography, useTheme } from '@mui/material';
+import { Box, Button, Paper, SvgIcon, Typography, useTheme } from '@mui/material';
 import { useEffect } from 'react';
 import { ContentContainer } from 'src/components/ContentContainer';
 import { TopInfoPanel } from 'src/components/TopInfoPanel/TopInfoPanel';

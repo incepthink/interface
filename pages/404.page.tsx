@@ -1,5 +1,5 @@
 import { Trans } from '@lingui/macro';
-import { Box, Button, Paper, Typography, useTheme } from '@mui/material';
+import { Button, Paper, Typography, useTheme } from '@mui/material';
 import Link from 'next/link';
 import { useEffect } from 'react';
 import { ContentContainer } from 'src/components/ContentContainer';

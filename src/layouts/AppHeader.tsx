@@ -1,30 +1,22 @@
-import {
-  InformationCircleIcon,
-  // SparklesIcon,
-  // SwitchHorizontalIcon,
-} from '@heroicons/react/outline';
+import { InformationCircleIcon } from '@heroicons/react/outline';
 import { Trans } from '@lingui/macro';
 import {
-  // Badge,
+  Box,
   Button,
-  // CircularProgress,
-  // NoSsr,
   Slide,
-  // styled,
   SvgIcon,
   Typography,
   useMediaQuery,
   useScrollTrigger,
   useTheme,
 } from '@mui/material';
-import Box from '@mui/material/Box';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
+import AggtraderNavbar from 'src/components/AggtraderNavbar';
 import { AvatarSize } from 'src/components/Avatar';
 import { ContentWithTooltip } from 'src/components/ContentWithTooltip';
 import { UserDisplay } from 'src/components/UserDisplay';
 import { ConnectWalletButton } from 'src/components/WalletConnection/ConnectWalletButton';
-// import { useCowOrderToast } from 'src/hooks/useCowOrderToast';
 import { useModalContext } from 'src/hooks/useModal';
 import { useWeb3Context } from 'src/libs/hooks/useWeb3Context';
 import { useRootStore } from 'src/store/root';
@@ -35,7 +27,6 @@ import { Link } from '../components/primitives/Link';
 import { uiConfig } from '../uiConfig';
 import { NavItems } from './components/NavItems';
 import { MobileMenu } from './MobileMenu';
-import AggtraderNavbar from 'src/components/AggtraderNavbar';
 
 interface Props {
   children: React.ReactElement;
