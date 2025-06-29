@@ -67,13 +67,18 @@ export const SupplyAssetsList = () => {
   const [isShowZeroAssets, setIsShowZeroAssets] = useState(
     localStorage.getItem(localStorageName) === 'true'
   );
-
+  const allowedSymbols = ['UNI', 'WBTC', 'USDT', 'WETH', 'ETH'];
   const tokensToSupply = reserves
     .filter(
       (reserve: ComputedReserveData) =>
         !(reserve.isFrozen || reserve.isPaused) &&
         !displayGhoForMintableMarket({ symbol: reserve.symbol, currentMarket })
     )
+    .filter((reserve) => {
+      console.log('BORROW BUG::', reserve.symbol);
+
+      return allowedSymbols.includes(reserve.symbol);
+    })
     .map((reserve: ComputedReserveData) => {
       const walletBalance = walletBalances[reserve.underlyingAsset]?.amount;
       const walletBalanceUSD = walletBalances[reserve.underlyingAsset]?.amountUSD;

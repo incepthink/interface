@@ -62,6 +62,7 @@ export const BasicModal = ({
           height: contentHeight ? `${contentHeight}px` : 'auto',
           maxHeight: contentHeight ? `${contentHeight}px` : 'calc(100vh - 20px)',
           p: 6,
+          boxShadow: '0px 4px 34px rgba(0, 255, 233, 0.4)',
         }}
       >
         {children}

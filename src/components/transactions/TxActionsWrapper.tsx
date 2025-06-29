@@ -150,11 +150,11 @@ export const TxActionsWrapper = ({
       )}
 
       <Button
-        variant="contained"
+        variant="transaction"
         disabled={disabled || blocked || readOnlyModeAddress !== undefined}
         onClick={handleClick}
         size="large"
-        sx={{ minHeight: '44px', ...(approvalParams ? { mt: 2 } : {}) }}
+        sx={{ color: 'black', minHeight: '44px', ...(approvalParams ? { mt: 2 } : {}) }}
         data-cy="actionButton"
       >
         {loading && <CircularProgress color="inherit" size="16px" sx={{ mr: 2 }} />}

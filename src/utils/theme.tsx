@@ -121,6 +121,7 @@ declare module '@mui/material/Button' {
   interface ButtonPropsVariantOverrides {
     surface: true;
     gradient: true;
+    transaction: true;
   }
 }
 
@@ -183,7 +184,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') => {
       },
       background: {
         default: getColor('#F1F1F3', '#050512'),
-        paper: getColor('#FFFFFF', '#292E41'),
+        paper: getColor('#FFFFFF', '#131722'),
         surface: getColor('#F7F7F9', '#383D51'),
         surface2: getColor('#F9F9FB', '#383D51'),
         header: getColor('#2B2D3C', '#050512'),
@@ -194,15 +195,15 @@ export const getDesignTokens = (mode: 'light' | 'dark') => {
         active: getColor('#8E92A3', '#EBEBEF8F'),
         hover: getColor('#F1F1F3', '#EBEBEF14'),
         selected: getColor('#EAEBEF', '#EBEBEF29'),
-        disabled: getColor('#BBBECA', '#EBEBEF4D'),
+        disabled: getColor('#BBBECA', '#000'),
         disabledBackground: getColor('#EAEBEF', '#EBEBEF1F'),
         focus: getColor('#F1F1F3', '#EBEBEF1F'),
       },
       other: {
-        standardInputLine: getColor('#383D511F', '#EBEBEF6B'),
+        standardInputLine: getColor('#383D511F', '#00FFE9'),
       },
       gradients: {
-        aaveGradient: 'linear-gradient(248.86deg, #B6509E 10.51%, #2EBAC6 93.41%)',
+        aaveGradient: 'linear-gradient(to right, #00F5E0, #00FAFF)',
         newGradient: 'linear-gradient(79.67deg, #8C3EBC 0%, #007782 95.82%)',
       },
     },
@@ -452,6 +453,17 @@ export function getThemedComponents(theme: Theme) {
               '&:hover, &.Mui-focusVisible': {
                 background: theme.palette.gradients.aaveGradient,
                 opacity: '0.9',
+              },
+            },
+          },
+          {
+            props: { variant: 'transaction' },
+            style: {
+              backgroundColor: '#00FFE9',
+              color: '#000000',
+              fontWeight: 400,
+              '&:hover': {
+                backgroundColor: 'rgba(0, 255, 233, 0.7)',
               },
             },
           },

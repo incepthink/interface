@@ -329,7 +329,7 @@ const SupplyAction = ({
           onClick={onActionClicked}
           disabled={disable}
           fullWidth={false}
-          variant="contained"
+          variant="transaction"
           data-cy="supplyButton"
         >
           <Trans>Supply</Trans>
@@ -383,7 +383,7 @@ const BorrowAction = ({
           onClick={onActionClicked}
           disabled={disable}
           fullWidth={false}
-          variant="contained"
+          variant="transaction"
           data-cy="borrowButton"
         >
           <Trans>Borrow </Trans>

@@ -39,7 +39,7 @@ const CustomTxModalToggleButton = styled(ToggleButton)<ToggleButtonProps>(({ the
 
   '&.Mui-selected, &.Mui-selected:hover': {
     border: `1px solid ${theme.palette.other.standardInputLine}`,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#00FFE9',
     borderRadius: '4px !important',
   },
 

@@ -47,7 +47,10 @@ function NavLink({ href, children, isActive }: NavLinkProps) {
 }
 
 const navItems = [
-  { href: 'https://spot.aggtrade.xyz/', label: 'Spot' },
+  {
+    href: 'https://uniswap-interface-web-git-new-deploy-hashcase.vercel.app/#/swap',
+    label: 'Spot',
+  },
   { href: '#', label: 'Lend/Borrow' },
   { href: 'https://perp.aggtrade.xyz/', label: 'Perps' },
   { href: 'https://yield.aggtrade.xyz/', label: 'Yield Farming' },

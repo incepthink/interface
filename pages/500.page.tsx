@@ -65,16 +65,6 @@ export default function Aave500Page() {
             flexDirection="column"
             mt={10}
           >
-            <Typography sx={{ mb: 4 }}>
-              <Trans>
-                If the error continues to happen,
-                <br /> you may report it to this
-              </Trans>{' '}
-              <Link href="https://discord.com/invite/aave" color="inherit" target="_blank">
-                <Trans>Discord channel</Trans>
-              </Link>
-              .
-            </Typography>
             <Button
               color="primary"
               startIcon={

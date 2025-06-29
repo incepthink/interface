@@ -127,7 +127,7 @@ export const ReserveTopDetailsWrapper = ({ underlyingAsset }: ReserveTopDetailsP
               {market.v3 && (
                 <Box
                   sx={{
-                    color: '#fff',
+                    color: '#000',
                     px: 2,
                     mx: 2,
                     borderRadius: '12px',
