@@ -12,7 +12,6 @@ import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import { ReactNode, useEffect, useState } from 'react';
 import { AddressBlocked } from 'src/components/AddressBlocked';
-import AggtraderNavbar from 'src/components/AggtraderNavbar';
 import { Meta } from 'src/components/Meta';
 import { TransactionEventHandler } from 'src/components/TransactionEventHandler';
 import { GasStationProvider } from 'src/components/transactions/GasStation/GasStationProvider';
@@ -154,7 +153,6 @@ export default function MyApp(props: MyAppProps) {
                           <SharedDependenciesProvider>
                             <AppDataProvider>
                               <GasStationProvider>
-                                <AggtraderNavbar />
                                 {getLayout(<Component {...pageProps} />)}
                                 <SupplyModal />
                                 <WithdrawModal />
