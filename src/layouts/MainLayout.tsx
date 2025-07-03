@@ -1,13 +1,11 @@
 import { Box } from '@mui/material';
 import React, { ReactNode } from 'react';
 import AnalyticsConsent from 'src/components/Analytics/AnalyticsConsent';
-import { ROUTES } from 'src/components/primitives/Link';
 import { FeedbackModal } from 'src/layouts/FeedbackDialog';
 import { FORK_ENABLED } from 'src/utils/marketsAndNetworksConfig';
 
 import { AppFooter } from './AppFooter';
 import { AppHeader } from './AppHeader';
-import TopBarNotify from './TopBarNotify';
 // import ellipse from "../../public/ellipse-home.png"
 
 // const SwitchIcon = () => (
@@ -28,15 +26,15 @@ import TopBarNotify from './TopBarNotify';
 // );
 
 export function MainLayout({ children }: { children: ReactNode }) {
-  const APP_BANNER_VERSION = '7.0.0';
+  // const APP_BANNER_VERSION = '7.0.0';
   // const currentMarket = useRootStore((state) => state.currentMarket);
   return (
     <>
-      <TopBarNotify
+      {/* <TopBarNotify
         learnMoreLink={ROUTES.staking}
         notifyText="Aave Safety Module has been upgraded to Umbrella"
         bannerVersion={APP_BANNER_VERSION}
-      />
+      /> */}
 
       <AppHeader />
 

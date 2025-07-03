@@ -13,16 +13,10 @@ import {
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import AggtraderNavbar from 'src/components/AggtraderNavbar';
-import { AvatarSize } from 'src/components/Avatar';
 import { ContentWithTooltip } from 'src/components/ContentWithTooltip';
-import { UserDisplay } from 'src/components/UserDisplay';
-import { ConnectWalletButton } from 'src/components/WalletConnection/ConnectWalletButton';
-import { useModalContext } from 'src/hooks/useModal';
-import { useWeb3Context } from 'src/libs/hooks/useWeb3Context';
 import { useRootStore } from 'src/store/root';
 import { ENABLE_TESTNET, FORK_ENABLED } from 'src/utils/marketsAndNetworksConfig';
 import { useShallow } from 'zustand/shallow';
-
 import { Link } from '../components/primitives/Link';
 import { uiConfig } from '../uiConfig';
 import { NavItems } from './components/NavItems';
@@ -98,8 +92,6 @@ export function AppHeader() {
     ])
   );
 
-  const { openReadMode } = useModalContext();
-  const { readOnlyMode } = useWeb3Context();
   const [walletWidgetOpen, setWalletWidgetOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   // const { hasActiveOrders } = useCowOrderToast();
@@ -328,23 +320,6 @@ export function AppHeader() {
             </Button>
           </StyledBadge>
         </NoSsr> */}
-
-          {readOnlyMode ? (
-            <Button
-              variant="surface"
-              onClick={() => {
-                openReadMode();
-              }}
-            >
-              <UserDisplay
-                avatarProps={{ size: AvatarSize.SM }}
-                oneLiner={true}
-                titleProps={{ variant: 'buttonM' }}
-              />
-            </Button>
-          ) : (
-            <ConnectWalletButton />
-          )}
 
           {/* <Box sx={{ display: { xs: 'none', md: 'block' } }}>
           <SettingsMenu />

@@ -1,6 +1,12 @@
 'use client';
 
 import React from 'react';
+import { useWeb3Context } from 'src/libs/hooks/useWeb3Context';
+import { UserDisplay } from 'src/components/UserDisplay';
+import { ConnectWalletButton } from 'src/components/WalletConnection/ConnectWalletButton';
+import { AvatarSize } from 'src/components/Avatar';
+import { Button } from '@mui/material';
+import { useModalContext } from 'src/hooks/useModal';
 
 interface NavLinkProps {
   href: string;
@@ -48,7 +54,7 @@ function NavLink({ href, children, isActive }: NavLinkProps) {
 
 const navItems = [
   {
-    href: 'https://uniswap-interface-web-git-new-deploy-hashcase.vercel.app/#/swap',
+    href: 'https://aggtrade.xyz/spot',
     label: 'Spot',
   },
   { href: '#', label: 'Lend/Borrow' },
@@ -59,6 +65,9 @@ const navItems = [
 
 export default function AggtraderNavbar() {
   const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
+
+  const { readOnlyMode } = useWeb3Context();
+  const { openReadMode } = useModalContext();
 
   return (
     <nav
@@ -112,6 +121,22 @@ export default function AggtraderNavbar() {
           );
         })}
       </ul>
+      {readOnlyMode ? (
+        <Button
+          variant="surface"
+          onClick={() => {
+            openReadMode();
+          }}
+        >
+          <UserDisplay
+            avatarProps={{ size: AvatarSize.SM }}
+            oneLiner={true}
+            titleProps={{ variant: 'buttonM' }}
+          />
+        </Button>
+      ) : (
+        <ConnectWalletButton />
+      )}
     </nav>
   );
 }
