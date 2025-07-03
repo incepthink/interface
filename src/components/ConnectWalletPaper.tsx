@@ -1,16 +1,24 @@
+// src/components/ConnectWalletPaper.tsx
+'use client';
+
 import { Trans } from '@lingui/macro';
 import { CircularProgress, Paper, PaperProps, Typography } from '@mui/material';
-import { useModal } from 'connectkit';
-import { ReactNode } from 'react';
+import { useState } from 'react';
 
 import { ConnectWalletButton } from './WalletConnection/ConnectWalletButton';
 
 interface ConnectWalletPaperProps extends PaperProps {
-  description?: ReactNode;
+  /** Optional text under the headline */
+  description?: React.ReactNode;
 }
 
-export const ConnectWalletPaper = ({ description, sx, ...rest }: ConnectWalletPaperProps) => {
-  const { open } = useModal();
+export const ConnectWalletPaper: React.FC<ConnectWalletPaperProps> = ({
+  description,
+  sx,
+  ...rest
+}) => {
+  /* Track whether the RainbowKit modal is currently open */
+  const [isConnecting, setIsConnecting] = useState(false);
 
   return (
     <Paper
@@ -23,30 +31,31 @@ export const ConnectWalletPaper = ({ description, sx, ...rest }: ConnectWalletPa
         textAlign: 'center',
         p: 10,
         flex: 1,
-        ...sx,
         backgroundColor: 'transparent',
         boxShadow: 'inset 0px 4px 34px rgba(0, 255, 233, 0.4)',
+        ...sx,
       }}
     >
-      <>
-        {open ? (
-          <CircularProgress />
-        ) : (
-          <>
-            <Typography variant="h2" sx={{ mb: 2 }}>
-              <Trans>Please, connect your wallet</Trans>
-            </Typography>
-            <Typography sx={{ mb: 6 }} color="text.secondary">
-              {description || (
-                <Trans>
-                  Please connect your wallet to see your supplies, borrowings, and open positions.
-                </Trans>
-              )}
-            </Typography>
-            <ConnectWalletButton />
-          </>
-        )}
-      </>
+      {isConnecting ? (
+        <CircularProgress />
+      ) : (
+        <>
+          <Typography variant="h2" sx={{ mb: 2 }}>
+            <Trans>Please, connect your wallet</Trans>
+          </Typography>
+
+          <Typography sx={{ mb: 6 }} color="text.secondary">
+            {description || (
+              <Trans>
+                Please connect your wallet to see your supplies, borrowings, and open positions.
+              </Trans>
+            )}
+          </Typography>
+
+          {/* Pass the state setter so the button can report modal open/close */}
+          <ConnectWalletButton onIsConnecting={setIsConnecting} />
+        </>
+      )}
     </Paper>
   );
 };

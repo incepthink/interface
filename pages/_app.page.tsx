@@ -3,9 +3,9 @@ import '/src/styles/variables.css';
 
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { NoSsr } from '@mui/material';
+import { darkTheme, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { ConnectKitProvider } from 'connectkit';
 import { NextPage } from 'next';
 import { AppProps } from 'next/app';
 import dynamic from 'next/dynamic';
@@ -16,6 +16,7 @@ import { Meta } from 'src/components/Meta';
 import { TransactionEventHandler } from 'src/components/TransactionEventHandler';
 import { GasStationProvider } from 'src/components/transactions/GasStation/GasStationProvider';
 import { CowOrderToast } from 'src/components/transactions/Switch/CowOrderToast';
+import { WalletEffects } from 'src/components/WalletConnection/WalletEffects';
 import { AppDataProvider } from 'src/hooks/app-data-provider/useAppDataProvider';
 import { CowOrderToastProvider } from 'src/hooks/useCowOrderToast';
 import { ModalContextProvider } from 'src/hooks/useModal';
@@ -131,20 +132,26 @@ export default function MyApp(props: MyAppProps) {
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <Meta
-        title={'Open Source Liquidity Protocol'}
-        description={
-          'Aave is an Open Source Protocol to create Non-Custodial Liquidity Markets to earn interest on supplying and borrowing assets with a variable or stable interest rate. The protocol is designed for easy integration into your products and services.'
-        }
+        title={'AggTrade - Lending/Borrowing'}
+        description={'AggTrade - Lending/Borrowing.'}
         imageUrl="https://app.aave.com/aave-com-opengraph.png"
       />
       <NoSsr>
         <LanguageProvider>
           <WagmiProvider config={wagmiConfig}>
             <QueryClientProvider client={queryClient}>
-              <ConnectKitProvider
-                onDisconnect={cleanLocalStorage}
-                onConnect={({ connectorId }) => setWalletType(connectorId)}
+              <RainbowKitProvider
+                theme={darkTheme({
+                  accentColor: '#00F5E0', // your green-cyan gradient
+                  accentColorForeground: '#000',
+                  borderRadius: 'small',
+                  overlayBlur: 'small',
+                })}
               >
+                <WalletEffects
+                  setWalletType={setWalletType}
+                  cleanLocalStorage={cleanLocalStorage}
+                />
                 <Web3ContextProvider>
                   <AppGlobalStyles>
                     <AddressBlocked>
@@ -178,7 +185,7 @@ export default function MyApp(props: MyAppProps) {
                     </AddressBlocked>
                   </AppGlobalStyles>
                 </Web3ContextProvider>
-              </ConnectKitProvider>
+              </RainbowKitProvider>
               <ReactQueryDevtools initialIsOpen={false} />
             </QueryClientProvider>
           </WagmiProvider>
