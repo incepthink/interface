@@ -36,6 +36,7 @@ export const NavItems = ({ setOpen }: NavItemsProps) => {
         display: 'flex',
         alignItems: { xs: 'flex-start', md: 'center' },
         flexDirection: { xs: 'column', md: 'row' },
+        justifyContent: 'center',
       }}
       disablePadding
     >

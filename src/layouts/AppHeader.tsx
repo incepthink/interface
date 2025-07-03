@@ -19,7 +19,6 @@ import { ENABLE_TESTNET, FORK_ENABLED } from 'src/utils/marketsAndNetworksConfig
 import { useShallow } from 'zustand/shallow';
 
 import { Link } from '../components/primitives/Link';
-import { uiConfig } from '../uiConfig';
 import { NavItems } from './components/NavItems';
 import { MobileMenu } from './MobileMenu';
 
@@ -199,7 +198,7 @@ export function AppHeader() {
             boxShadow: 'inset 0px -1px 0px rgba(242, 243, 247, 0.16)',
           })}
         >
-          <Box
+          {/* <Box
             component={Link}
             href="/"
             aria-label="Go to homepage"
@@ -212,7 +211,7 @@ export function AppHeader() {
             onClick={() => setMobileMenuOpen(false)}
           >
             <img src={uiConfig.appLogo} alt="AAVE" width={72} height={40} />
-          </Box>
+          </Box> */}
           <Box sx={{ mr: sm ? 1 : 3 }}>
             {ENABLE_TESTNET && (
               <ContentWithTooltip tooltipContent={testnetTooltip} offset={[0, -4]} withoutHover>
@@ -254,7 +253,9 @@ export function AppHeader() {
             )}
           </Box>
 
-          <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+          <Box
+            sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'center', width: '100%' }}
+          >
             <NavItems />
           </Box>
 
