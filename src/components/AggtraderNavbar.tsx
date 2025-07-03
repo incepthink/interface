@@ -1,12 +1,12 @@
 'use client';
 
+import { Button } from '@mui/material';
 import React from 'react';
-import { useWeb3Context } from 'src/libs/hooks/useWeb3Context';
+import { AvatarSize } from 'src/components/Avatar';
 import { UserDisplay } from 'src/components/UserDisplay';
 import { ConnectWalletButton } from 'src/components/WalletConnection/ConnectWalletButton';
-import { AvatarSize } from 'src/components/Avatar';
-import { Button } from '@mui/material';
 import { useModalContext } from 'src/hooks/useModal';
+import { useWeb3Context } from 'src/libs/hooks/useWeb3Context';
 
 interface NavLinkProps {
   href: string;

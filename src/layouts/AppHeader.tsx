@@ -17,6 +17,7 @@ import { ContentWithTooltip } from 'src/components/ContentWithTooltip';
 import { useRootStore } from 'src/store/root';
 import { ENABLE_TESTNET, FORK_ENABLED } from 'src/utils/marketsAndNetworksConfig';
 import { useShallow } from 'zustand/shallow';
+
 import { Link } from '../components/primitives/Link';
 import { uiConfig } from '../uiConfig';
 import { NavItems } from './components/NavItems';
