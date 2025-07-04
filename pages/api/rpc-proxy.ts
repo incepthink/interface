@@ -51,7 +51,7 @@ function getRpcUrl(chainId: number): string | null {
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const allowedOrigins = ['https://app.aave.com', 'https://aave.com'];
+  const allowedOrigins = ['https://lending.aggtrade.xyz/', 'http://localhost:3000/'];
   const origin = req.headers.origin;
 
   const isOriginAllowed = (origin: string | undefined): boolean => {

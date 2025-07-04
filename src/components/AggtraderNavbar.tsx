@@ -57,8 +57,8 @@ const navItems = [
     href: 'https://aggtrade.xyz/spot',
     label: 'Spot',
   },
-  { href: '#', label: 'Lend/Borrow' },
   { href: 'https://perp.aggtrade.xyz/', label: 'Perps' },
+  { href: '#', label: 'Lend/Borrow' },
   { href: 'https://yield.aggtrade.xyz/', label: 'Yield Farming' },
   { href: 'https://aggtrade.xyz/profile', label: 'Account' },
 ];
@@ -83,7 +83,7 @@ export default function AggtraderNavbar() {
         zIndex: 1000,
       }}
     >
-      <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+      <a href="/" style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
         <div style={{ width: '40px' }}>
           <img src="/aggtrade.png" alt="" style={{ width: '100%', objectFit: 'cover' }} />
         </div>
@@ -98,7 +98,7 @@ export default function AggtraderNavbar() {
         >
           AggTrade
         </h2>
-      </div>
+      </a>
       <ul
         style={{
           listStyle: 'none',
