@@ -95,8 +95,6 @@ export const BorrowAssetsList = () => {
   const tokensToBorrow = reserves
     .filter((reserve) => (user ? assetCanBeBorrowedByUser(reserve, user) : false))
     .filter((reserve) => {
-      console.log('BORROW BUG::', reserve.symbol);
-
       return allowedSymbols.includes(reserve.symbol);
     })
     .map((reserve: ComputedReserveData) => {

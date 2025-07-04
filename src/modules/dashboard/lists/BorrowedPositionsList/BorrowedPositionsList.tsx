@@ -48,6 +48,8 @@ const head = [
 
 export const BorrowedPositionsList = () => {
   const { user, loading, reserves } = useAppDataContext();
+  console.log('USER::', user);
+
   const [currentMarketData, currentNetworkConfig] = useRootStore(
     useShallow((store) => [store.currentMarketData, store.currentNetworkConfig])
   );

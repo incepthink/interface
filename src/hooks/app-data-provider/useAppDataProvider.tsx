@@ -128,6 +128,8 @@ export const AppDataProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const isUserDataLoading = userReservesDataLoading || userSummaryLoading;
 
   let user = userSummary;
+  console.log('USER::', user);
+
   // Factor discounted GHO interest into cumulative user fields
 
   const isGhoInMarket = GHO_MINTING_MARKETS.includes(currentMarket);

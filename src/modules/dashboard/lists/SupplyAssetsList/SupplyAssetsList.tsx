@@ -75,8 +75,6 @@ export const SupplyAssetsList = () => {
         !displayGhoForMintableMarket({ symbol: reserve.symbol, currentMarket })
     )
     .filter((reserve) => {
-      console.log('BORROW BUG::', reserve.symbol);
-
       return allowedSymbols.includes(reserve.symbol);
     })
     .map((reserve: ComputedReserveData) => {
