@@ -130,20 +130,3 @@ export const DashboardContentWrapper = ({ isBorrow }: DashboardContentWrapperPro
     </Box>
   );
 };
-
-// Updated StyledToggleButton styling (if you need to update the Supply/Borrow toggle)
-// This would go in your StyledToggleButton component or theme:
-
-const styledToggleButtonSx = {
-  '&.Mui-selected': {
-    backgroundColor: '#00F5E0',
-    color: '#000000',
-    '&:hover': {
-      backgroundColor: '#00C4B5',
-    },
-  },
-  '&:hover': {
-    backgroundColor: 'rgba(0, 245, 224, 0.08)',
-  },
-  border: '1px solid rgba(0, 245, 224, 0.3)',
-};
