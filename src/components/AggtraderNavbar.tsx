@@ -1,20 +1,20 @@
 'use client';
 
+import { Close as CloseIcon, Menu as MenuIcon } from '@mui/icons-material';
 import {
-  Button,
+  AppBar,
   Box,
-  IconButton,
+  Button,
   Drawer,
+  IconButton,
   List,
   ListItem,
   ListItemButton,
-  useTheme,
-  useMediaQuery,
-  AppBar,
   Toolbar,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from '@mui/material';
-import { Menu as MenuIcon, Close as CloseIcon } from '@mui/icons-material';
 import React, { useState } from 'react';
 import { AvatarSize } from 'src/components/Avatar';
 import { UserDisplay } from 'src/components/UserDisplay';
