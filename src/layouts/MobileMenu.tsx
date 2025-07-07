@@ -1,4 +1,4 @@
-import { MenuIcon } from '@heroicons/react/outline';
+import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import {
@@ -11,6 +11,7 @@ import {
   ListItemText,
   SvgIcon,
   Typography,
+  IconButton,
 } from '@mui/material';
 import React, { ReactNode, useEffect, useState } from 'react';
 import { useModalContext } from 'src/hooks/useModal';
@@ -21,7 +22,6 @@ import { moreNavigation } from '../ui-config/menu-items';
 import { DarkModeSwitcher } from './components/DarkModeSwitcher';
 import { DrawerWrapper } from './components/DrawerWrapper';
 import { LanguageListItem, LanguagesList } from './components/LanguageSwitcher';
-import { MobileCloseButton } from './components/MobileCloseButton';
 import { NavItems } from './components/NavItems';
 import { TestNetModeSwitcher } from './components/TestNetModeSwitcher';
 
@@ -45,6 +45,38 @@ const MenuItemsWrapper = ({ children, title }: { children: ReactNode; title: Rea
   </Box>
 );
 
+// Custom MobileCloseButton component
+const MobileCloseButton = ({ setOpen }: { setOpen: (value: boolean) => void }) => (
+  <Box
+    sx={{
+      position: 'fixed',
+      top: 16,
+      right: 16,
+      zIndex: 1300,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }}
+  >
+    <IconButton
+      onClick={() => setOpen(false)}
+      sx={{
+        backgroundColor: 'rgba(0, 0, 0, 0.6)',
+        color: '#F1F1F3',
+        '&:hover': {
+          backgroundColor: 'rgba(0, 0, 0, 0.8)',
+        },
+        width: 40,
+        height: 40,
+      }}
+    >
+      <SvgIcon>
+        <XIcon />
+      </SvgIcon>
+    </IconButton>
+  </Box>
+);
+
 export const MobileMenu = ({ open, setOpen, headerHeight }: MobileMenuProps) => {
   const { i18n } = useLingui();
   const [isLanguagesListOpen, setIsLanguagesListOpen] = useState(false);
@@ -64,7 +96,6 @@ export const MobileMenu = ({ open, setOpen, headerHeight }: MobileMenuProps) => 
       ) : (
         <Button
           id="settings-button-mobile"
-          variant="surface"
           sx={{ p: '7px 8px', minWidth: 'unset', ml: 2 }}
           onClick={() => setOpen(true)}
         >
@@ -75,6 +106,36 @@ export const MobileMenu = ({ open, setOpen, headerHeight }: MobileMenuProps) => 
       )}
 
       <DrawerWrapper open={open} setOpen={setOpen} headerHeight={headerHeight}>
+        {/* Header with close button inside drawer */}
+        {open && (
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              p: 2,
+              borderBottom: '1px solid rgba(242, 243, 247, 0.16)',
+            }}
+          >
+            <Typography variant="subheader1" sx={{ color: '#F1F1F3' }}>
+              <Trans>Menu</Trans>
+            </Typography>
+            <IconButton
+              onClick={() => setOpen(false)}
+              sx={{
+                color: '#F1F1F3',
+                '&:hover': {
+                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                },
+              }}
+            >
+              <SvgIcon>
+                <XIcon />
+              </SvgIcon>
+            </IconButton>
+          </Box>
+        )}
+
         {!isLanguagesListOpen ? (
           <>
             <MenuItemsWrapper title={<Trans>Menu</Trans>}>
@@ -127,9 +188,38 @@ export const MobileMenu = ({ open, setOpen, headerHeight }: MobileMenuProps) => 
             </MenuItemsWrapper>
           </>
         ) : (
-          <List sx={{ px: 2 }}>
-            <LanguagesList onClick={() => setIsLanguagesListOpen(false)} />
-          </List>
+          <Box>
+            {/* Back button for language list */}
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                p: 2,
+                borderBottom: '1px solid rgba(242, 243, 247, 0.16)',
+              }}
+            >
+              <Typography variant="subheader1" sx={{ color: '#F1F1F3' }}>
+                <Trans>Language</Trans>
+              </Typography>
+              <IconButton
+                onClick={() => setIsLanguagesListOpen(false)}
+                sx={{
+                  color: '#F1F1F3',
+                  '&:hover': {
+                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  },
+                }}
+              >
+                <SvgIcon>
+                  <XIcon />
+                </SvgIcon>
+              </IconButton>
+            </Box>
+            <List sx={{ px: 2 }}>
+              <LanguagesList onClick={() => setIsLanguagesListOpen(false)} />
+            </List>
+          </Box>
         )}
       </DrawerWrapper>
     </>

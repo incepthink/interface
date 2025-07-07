@@ -26,39 +26,6 @@ interface Props {
   children: React.ReactElement;
 }
 
-// const StyledBadge = styled(Badge)(({ theme }) => ({
-//   '& .MuiBadge-badge': {
-//     top: '2px',
-//     right: '2px',
-//     borderRadius: '20px',
-//     width: '10px',
-//     height: '10px',
-//     backgroundColor: `${theme.palette.secondary.main}`,
-//     color: `${theme.palette.secondary.main}`,
-//     '&::after': {
-//       position: 'absolute',
-//       top: 0,
-//       left: 0,
-//       width: '100%',
-//       height: '100%',
-//       borderRadius: '50%',
-//       animation: 'ripple 1.2s infinite ease-in-out',
-//       border: '1px solid currentColor',
-//       content: '""',
-//     },
-//   },
-//   '@keyframes ripple': {
-//     '0%': {
-//       transform: 'scale(.8)',
-//       opacity: 1,
-//     },
-//     '100%': {
-//       transform: 'scale(2.4)',
-//       opacity: 0,
-//     },
-//   },
-// }));
-
 function HideOnScroll({ children }: Props) {
   const { breakpoints } = useTheme();
   const md = useMediaQuery(breakpoints.down('md'));
@@ -71,18 +38,10 @@ function HideOnScroll({ children }: Props) {
   );
 }
 
-// const SWITCH_VISITED_KEY = 'switchVisited';
-
 export function AppHeader() {
   const { breakpoints } = useTheme();
   const md = useMediaQuery(breakpoints.down('md'));
   const sm = useMediaQuery(breakpoints.down('sm'));
-  // const smd = useMediaQuery('(max-width:1120px)');
-
-  // const [visitedSwitch, setVisitedSwitch] = useState(() => {
-  //   if (typeof window === 'undefined') return true;
-  //   return Boolean(localStorage.getItem(SWITCH_VISITED_KEY));
-  // });
 
   const [mobileDrawerOpen, setMobileDrawerOpen, currentMarketData] = useRootStore(
     useShallow((state) => [
@@ -94,7 +53,6 @@ export function AppHeader() {
 
   const [walletWidgetOpen, setWalletWidgetOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  // const { hasActiveOrders } = useCowOrderToast();
 
   useEffect(() => {
     if (mobileDrawerOpen && !md) {
@@ -115,7 +73,6 @@ export function AppHeader() {
 
   const disableTestnet = () => {
     localStorage.setItem('testnetsEnabled', 'false');
-    // Set window.location to trigger a page reload when navigating to the the dashboard
     window.location.href = '/';
   };
 
@@ -125,19 +82,8 @@ export function AppHeader() {
     localStorage.removeItem('forkBaseChainId');
     localStorage.removeItem('forkNetworkId');
     localStorage.removeItem('forkRPCUrl');
-    // Set window.location to trigger a page reload when navigating to the the dashboard
     window.location.href = '/';
   };
-
-  // const handleSwitchClick = () => {
-  //   localStorage.setItem(SWITCH_VISITED_KEY, 'true');
-  //   setVisitedSwitch(true);
-  //   openSwitch();
-  // };
-
-  // const handleBridgeClick = () => {
-  //   openBridge();
-  // };
 
   const testnetTooltip = (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'start', gap: 1 }}>
@@ -175,12 +121,19 @@ export function AppHeader() {
 
   return (
     <HideOnScroll>
-      <div>
+      <Box
+        sx={{
+          position: 'relative',
+          // Transform the entire container up when mobile menu is open
+          transform: mobileMenuOpen && md ? 'translateY(-80px)' : 'translateY(0)', // Assuming AggtraderNavbar is ~80px
+          transition: 'transform 0.3s ease-in-out',
+        }}
+      >
+        {/* Always render AggtraderNavbar but it will be hidden by transform */}
         <AggtraderNavbar />
+
         <Box
           component="header"
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
           sx={(theme) => ({
             height: headerHeight,
             position: 'sticky',
@@ -198,20 +151,6 @@ export function AppHeader() {
             boxShadow: 'inset 0px -1px 0px rgba(242, 243, 247, 0.16)',
           })}
         >
-          {/* <Box
-            component={Link}
-            href="/"
-            aria-label="Go to homepage"
-            sx={{
-              lineHeight: 0,
-              mr: 3,
-              transition: '0.3s ease all',
-              '&:hover': { opacity: 0.7 },
-            }}
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            <img src={uiConfig.appLogo} alt="AAVE" width={72} height={40} />
-          </Box> */}
           <Box sx={{ mr: sm ? 1 : 3 }}>
             {ENABLE_TESTNET && (
               <ContentWithTooltip tooltipContent={testnetTooltip} offset={[0, -4]} withoutHover>
@@ -261,72 +200,6 @@ export function AppHeader() {
 
           <Box sx={{ flexGrow: 1 }} />
 
-          {/* <NoSsr> // remove Bridge GHO
-          <StyledBadge
-            invisible={visitedSwitch}
-            variant="dot"
-            badgeContent=""
-            color="secondary"
-            sx={{ mr: 2 }}
-          >
-            <Button
-              onClick={handleBridgeClick}
-              variant="surface"
-              sx={{ p: '7px 8px', minWidth: 'unset', gap: 2, alignItems: 'center' }}
-            >
-              {!smd && (
-                <Typography component="span" typography="subheader1">
-                  Bridge GHO
-                </Typography>
-              )}
-              <SvgIcon fontSize="small">
-                <SparklesIcon />
-              </SvgIcon>
-            </Button>
-          </StyledBadge>
-        </NoSsr> */}
-
-          {/* <NoSsr> // removed SWAP
-          <StyledBadge
-            invisible={true}
-            variant="dot"
-            badgeContent=""
-            color="secondary"
-            sx={{ mr: 2 }}
-          >
-            <Button
-              onClick={handleSwitchClick}
-              variant="surface"
-              sx={{ p: '7px 8px', minWidth: 'unset', gap: 2, alignItems: 'center' }}
-              aria-label="Switch tool"
-            >
-              {!smd && (
-                <Typography component="span" typography="subheader1">
-                  Swap
-                </Typography>
-              )}
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                {hasActiveOrders ? (
-                  <CircularProgress
-                    size={20}
-                    sx={{
-                      color: (theme) => theme.palette.grey[200],
-                    }}
-                  />
-                ) : (
-                  <SvgIcon fontSize="small">
-                    <SwitchHorizontalIcon />
-                  </SvgIcon>
-                )}
-              </Box>
-            </Button>
-          </StyledBadge>
-        </NoSsr> */}
-
-          {/* <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-          <SettingsMenu />
-        </Box> */}
-
           {!walletWidgetOpen && (
             <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
               <MobileMenu
@@ -337,7 +210,7 @@ export function AppHeader() {
             </Box>
           )}
         </Box>
-      </div>
+      </Box>
     </HideOnScroll>
   );
 }

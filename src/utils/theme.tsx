@@ -137,15 +137,15 @@ export const getDesignTokens = (mode: 'light' | 'dark') => {
     palette: {
       mode,
       primary: {
-        main: getColor('#383D51', '#EAEBEF'),
-        light: getColor('#62677B', '#F1F1F3'),
-        dark: getColor('#292E41', '#D2D4DC'),
-        contrast: getColor('#FFFFFF', '#0F121D'),
+        main: getColor('#00F5E0', '#00F5E0'), // Changed to your cyan color
+        light: getColor('#33F7E6', '#33F7E6'), // Lighter version
+        dark: getColor('#00C4B5', '#00C4B5'), // Darker version
+        contrast: getColor('#000000', '#000000'), // Black text on cyan
       },
       secondary: {
-        main: getColor('#FF607B', '#F48FB1'),
-        light: getColor('#FF607B', '#F6A5C0'),
-        dark: getColor('#B34356', '#AA647B'),
+        main: getColor('#00FAFF', '#00FAFF'), // Complementary cyan-blue
+        light: getColor('#66FBFF', '#66FBFF'),
+        dark: getColor('#00C8CC', '#00C8CC'),
       },
       error: {
         main: getColor('#BC0000B8', '#F44336'),
@@ -169,11 +169,11 @@ export const getDesignTokens = (mode: 'light' | 'dark') => {
         '200': getColor('#E5EFFB', '#071F2E'), // for alert background
       },
       success: {
-        main: getColor('#4CAF50', '#66BB6A'),
+        main: getColor('#00F5E0', '#00F5E0'), // Use same cyan for success states
         light: getColor('#90FF95', '#90FF95'),
-        dark: getColor('#318435', '#388E3C'),
-        '100': getColor('#1C4B1E', '#C2E4C3'), // for alert text
-        '200': getColor('#ECF8ED', '#0A130B'), // for alert background
+        dark: getColor('#00C4B5', '#00C4B5'),
+        '100': getColor('#003D3A', '#C2F4F0'), // for alert text
+        '200': getColor('#E6FCFA', '#0A1514'), // for alert background
       },
       text: {
         primary: getColor('#303549', '#F1F1F3'),
@@ -200,11 +200,11 @@ export const getDesignTokens = (mode: 'light' | 'dark') => {
         focus: getColor('#F1F1F3', '#EBEBEF1F'),
       },
       other: {
-        standardInputLine: getColor('#383D511F', '#00FFE9'),
+        standardInputLine: getColor('#383D511F', '#00F5E0'), // Input focus color
       },
       gradients: {
-        aaveGradient: 'linear-gradient(to right, #00F5E0, #00FAFF)',
-        newGradient: 'linear-gradient(79.67deg, #8C3EBC 0%, #007782 95.82%)',
+        aaveGradient: 'linear-gradient(to right, #00F5E0, #00FAFF)', // Updated gradient
+        newGradient: 'linear-gradient(79.67deg, #00F5E0 0%, #007782 95.82%)',
       },
     },
     spacing: 4,
@@ -387,13 +387,12 @@ export function getThemedComponents(theme: Theme) {
       MuiOutlinedInput: {
         styleOverrides: {
           root: {
-            borderRadius: '6px',
-            borderColor: theme.palette.divider,
             '&:hover .MuiOutlinedInput-notchedOutline': {
-              borderColor: '#CBCDD8',
+              borderColor: '#00F5E0',
             },
             '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-              borderColor: '#CBCDD8',
+              borderColor: '#00F5E0',
+              borderWidth: '2px',
             },
           },
         },
@@ -441,17 +440,18 @@ export function getThemedComponents(theme: Theme) {
               backgroundColor: '#383D51',
               '&:hover, &.Mui-focusVisible': {
                 backgroundColor: theme.palette.background.header,
+                borderColor: '#00F5E0', // Add cyan border on hover
               },
             },
           },
           {
             props: { variant: 'gradient' },
             style: {
-              color: theme.palette.common.white,
-              background: theme.palette.gradients.aaveGradient,
+              color: '#000000', // Black text on cyan background
+              background: 'linear-gradient(to right, #00F5E0, #00FAFF)',
               transition: 'all 0.2s ease',
               '&:hover, &.Mui-focusVisible': {
-                background: theme.palette.gradients.aaveGradient,
+                background: 'linear-gradient(to right, #00F5E0, #00FAFF)',
                 opacity: '0.9',
               },
             },
@@ -459,19 +459,37 @@ export function getThemedComponents(theme: Theme) {
           {
             props: { variant: 'transaction' },
             style: {
-              backgroundColor: '#00FFE9',
+              backgroundColor: '#00F5E0', // Your primary cyan
               color: '#000000',
-              fontWeight: 400,
+              fontWeight: 500, // Slightly bolder
+              border: '1px solid #00F5E0',
               '&:hover': {
-                backgroundColor: 'rgba(0, 255, 233, 0.7)',
+                backgroundColor: '#00C4B5', // Darker cyan on hover
+                borderColor: '#00C4B5',
+              },
+            },
+          },
+          // Add a new variant for your design
+          {
+            props: { variant: 'contained', color: 'primary' },
+            style: {
+              backgroundColor: '#00F5E0',
+              color: '#000000',
+              fontWeight: 500,
+              '&:hover': {
+                backgroundColor: '#00C4B5',
               },
             },
           },
           {
-            props: { color: 'primary', variant: 'outlined' },
+            props: { variant: 'outlined', color: 'primary' },
             style: {
-              background: theme.palette.background.surface,
-              borderColor: theme.palette.divider,
+              borderColor: '#00F5E0',
+              color: '#00F5E0',
+              '&:hover': {
+                borderColor: '#00C4B5',
+                backgroundColor: 'rgba(0, 245, 224, 0.08)',
+              },
             },
           },
         ],
@@ -642,16 +660,11 @@ export function getThemedComponents(theme: Theme) {
             padding: 6,
           },
           switchBase: {
-            padding: 8,
             '&.Mui-checked': {
-              transform: 'translateX(14px)',
               '& + .MuiSwitch-track': {
-                backgroundColor: theme.palette.success.main,
+                backgroundColor: '#00F5E0', // Cyan for enabled switches
                 opacity: 1,
               },
-            },
-            '&.Mui-disabled': {
-              opacity: theme.palette.mode === 'dark' ? 0.3 : 0.7,
             },
           },
           thumb: {
@@ -848,10 +861,10 @@ export function getThemedComponents(theme: Theme) {
       MuiLinearProgress: {
         styleOverrides: {
           bar1Indeterminate: {
-            background: theme.palette.gradients.aaveGradient,
+            background: 'linear-gradient(to right, #00F5E0, #00FAFF)',
           },
           bar2Indeterminate: {
-            background: theme.palette.gradients.aaveGradient,
+            background: 'linear-gradient(to right, #00F5E0, #00FAFF)',
           },
         },
       },

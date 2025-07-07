@@ -64,6 +64,8 @@ export const AppDataProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
   const { data: reservesData, isPending: reservesDataLoading } =
     usePoolReservesHumanized(currentMarketData);
+  console.log(reservesData);
+
   const { data: formattedPoolReserves, isPending: formattedPoolReservesLoading } =
     usePoolFormattedReserves(currentMarketData);
   const baseCurrencyData = reservesData?.baseCurrencyData;

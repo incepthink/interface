@@ -1,3 +1,5 @@
+// Updated DashboardContentWrapper with consistent #00F5E0 styling
+
 import { ChainId } from '@aave/contract-helpers';
 import { Trans } from '@lingui/macro';
 import { Box, Button, useMediaQuery, useTheme } from '@mui/material';
@@ -28,6 +30,18 @@ export const DashboardContentWrapper = ({ isBorrow }: DashboardContentWrapperPro
 
   const downToLg = useMediaQuery(breakpoints.down('lg'));
 
+  // Consistent button styling for both buttons
+  const viewTransactionsButtonSx = {
+    backgroundColor: '#00F5E0',
+    color: '#000000',
+    fontWeight: 500,
+    border: '1px solid #00F5E0',
+    '&:hover': {
+      backgroundColor: '#00C4B5',
+      borderColor: '#00C4B5',
+    },
+  };
+
   return (
     <Box>
       {currentMarketData.chainId === ChainId.polygon && !currentMarketData.v3}
@@ -41,7 +55,6 @@ export const DashboardContentWrapper = ({ isBorrow }: DashboardContentWrapperPro
         <Box
           sx={{
             position: 'relative',
-
             display: { xs: isBorrow ? 'none' : 'block', lg: 'block' },
             width: paperWidth,
           }}
@@ -60,16 +73,16 @@ export const DashboardContentWrapper = ({ isBorrow }: DashboardContentWrapperPro
                   position: { xs: 'static', md: 'absolute' },
                   top: { xs: 'auto', md: '-130px' },
                   right: { xs: 'auto', md: '0px' },
+                  ...viewTransactionsButtonSx, // Apply consistent styling
                 }}
                 onClick={() => {
                   router.push(ROUTES.history);
                   trackEvent(AUTH.VIEW_TX_HISTORY);
                 }}
                 component="a"
-                variant="surface"
                 size="small"
               >
-                <Trans>View Transactions</Trans>
+                <Trans>VIEW TRANSACTIONS</Trans>
               </Button>
             </Box>
           )}
@@ -81,7 +94,6 @@ export const DashboardContentWrapper = ({ isBorrow }: DashboardContentWrapperPro
         <Box
           sx={{
             position: 'relative',
-
             display: { xs: !isBorrow ? 'none' : 'block', lg: 'block' },
             width: paperWidth,
           }}
@@ -102,12 +114,11 @@ export const DashboardContentWrapper = ({ isBorrow }: DashboardContentWrapperPro
                 }}
                 component="a"
                 sx={{
-                  border: '1px solid rgba(0, 255, 233, 0.5)',
-                  backgroundColor: 'rgba(0, 255, 233, 0.3)',
+                  ...viewTransactionsButtonSx, // Apply consistent styling instead of old rgba colors
                 }}
                 size="small"
               >
-                <Trans>View Transactions</Trans>
+                <Trans>VIEW TRANSACTIONS</Trans>
               </Button>
             </Box>
           )}
@@ -118,4 +129,21 @@ export const DashboardContentWrapper = ({ isBorrow }: DashboardContentWrapperPro
       </Box>
     </Box>
   );
+};
+
+// Updated StyledToggleButton styling (if you need to update the Supply/Borrow toggle)
+// This would go in your StyledToggleButton component or theme:
+
+const styledToggleButtonSx = {
+  '&.Mui-selected': {
+    backgroundColor: '#00F5E0',
+    color: '#000000',
+    '&:hover': {
+      backgroundColor: '#00C4B5',
+    },
+  },
+  '&:hover': {
+    backgroundColor: 'rgba(0, 245, 224, 0.08)',
+  },
+  border: '1px solid rgba(0, 245, 224, 0.3)',
 };

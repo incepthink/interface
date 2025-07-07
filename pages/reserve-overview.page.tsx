@@ -88,12 +88,16 @@ export default function ReserveOverview() {
             onChange={(_, value) => setMode(value)}
             sx={{ width: { xs: '100%', xsm: '359px' }, height: '44px' }}
           >
-            <StyledToggleButton value="overview" disabled={mode === 'overview'}>
+            <StyledToggleButton
+              value="overview"
+              disabled={mode === 'overview'}
+              data-text="Overview"
+            >
               <Typography variant="subheader1">
                 <Trans>Overview</Trans>
               </Typography>
             </StyledToggleButton>
-            <StyledToggleButton value="actions" disabled={mode === 'actions'}>
+            <StyledToggleButton value="actions" disabled={mode === 'actions'} data-text="Your info">
               <Typography variant="subheader1">
                 <Trans>Your info</Trans>
               </Typography>
