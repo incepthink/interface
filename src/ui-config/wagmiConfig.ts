@@ -3,6 +3,14 @@ import '@rainbow-me/rainbowkit/styles.css';
 
 import { getDefaultConfig } from '@rainbow-me/rainbowkit';
 import {
+  coinbaseWallet,
+  injectedWallet,
+  metaMaskWallet,
+  phantomWallet,
+  rainbowWallet,
+  walletConnectWallet,
+} from '@rainbow-me/rainbowkit/wallets';
+import {
   ENABLE_TESTNET,
   FORK_BASE_CHAIN_ID,
   FORK_CHAIN_ID,
@@ -54,20 +62,55 @@ const buildTransports = (chains: readonly Chain[]) =>
  * Shared app config
  * ────────────────────────────────────────────── */
 const appInfo = {
-  appName: 'Aave',
+  appName: 'AggTrade - Lending',
   appDescription: 'Non-custodial liquidity protocol',
-  appUrl: 'https://app.aave.com',
+  appUrl: 'https://yield.aggtrade.xyz/',
   appIcon: 'https://avatars.githubusercontent.com/u/47617460?s=200&v=4',
   projectId: process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID as string,
 };
 
 /* ──────────────────────────────────────────────
- * Main config used for production
+ * Custom wallet connectors with Phantom support
+ * ────────────────────────────────────────────── */
+// const connectors = connectorsForWallets(
+//   [
+//     {
+//       groupName: 'Popular',
+//       wallets: [
+//         metaMaskWallet,
+//         rainbowWallet,
+//         coinbaseWallet,
+//         phantomWallet, // Add Phantom wallet
+//       ],
+//     },
+//     {
+//       groupName: 'Other',
+//       wallets: [
+//         walletConnectWallet, // This will help mobile Phantom users connect
+//         injectedWallet,
+//       ],
+//     },
+//   ],
+//   appInfo
+// );
+
+/* ──────────────────────────────────────────────
+ * Main config used for production - using getDefaultConfig for compatibility
  * ────────────────────────────────────────────── */
 const prodConfig = getDefaultConfig({
   ...appInfo,
   chains: ENABLE_TESTNET ? testnetChains : prodChains,
   transports: ENABLE_TESTNET ? undefined : buildTransports(prodChains),
+  wallets: [
+    {
+      groupName: 'Popular',
+      wallets: [metaMaskWallet, rainbowWallet, coinbaseWallet, phantomWallet],
+    },
+    {
+      groupName: 'Other',
+      wallets: [walletConnectWallet, injectedWallet],
+    },
+  ],
   ssr: true,
 });
 
@@ -80,6 +123,16 @@ const cypressConfig = getDefaultConfig({
   ...appInfo,
   chains: [prodChains[0]], // forkChain
   transports: buildTransports([prodChains[0]]),
+  wallets: [
+    {
+      groupName: 'Popular',
+      wallets: [metaMaskWallet, rainbowWallet, coinbaseWallet, phantomWallet],
+    },
+    {
+      groupName: 'Other',
+      wallets: [walletConnectWallet, injectedWallet],
+    },
+  ],
   ssr: true,
 });
 

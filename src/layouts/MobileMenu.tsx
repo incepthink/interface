@@ -1,29 +1,11 @@
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { Trans } from '@lingui/macro';
-import { useLingui } from '@lingui/react';
-import {
-  Box,
-  Button,
-  Divider,
-  IconButton,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  SvgIcon,
-  Typography,
-} from '@mui/material';
+import { Box, Button, Divider, IconButton, List, SvgIcon, Typography } from '@mui/material';
 import React, { ReactNode, useEffect, useState } from 'react';
-import { useModalContext } from 'src/hooks/useModal';
-import { PROD_ENV } from 'src/utils/marketsAndNetworksConfig';
 
-import { Link } from '../components/primitives/Link';
-import { moreNavigation } from '../ui-config/menu-items';
-import { DarkModeSwitcher } from './components/DarkModeSwitcher';
 import { DrawerWrapper } from './components/DrawerWrapper';
-import { LanguageListItem, LanguagesList } from './components/LanguageSwitcher';
+import { LanguagesList } from './components/LanguageSwitcher';
 import { NavItems } from './components/NavItems';
-import { TestNetModeSwitcher } from './components/TestNetModeSwitcher';
 
 interface MobileMenuProps {
   open: boolean;
@@ -78,16 +60,9 @@ const MobileCloseButton = ({ setOpen }: { setOpen: (value: boolean) => void }) =
 );
 
 export const MobileMenu = ({ open, setOpen, headerHeight }: MobileMenuProps) => {
-  const { i18n } = useLingui();
   const [isLanguagesListOpen, setIsLanguagesListOpen] = useState(false);
-  const { openReadMode } = useModalContext();
 
   useEffect(() => setIsLanguagesListOpen(false), [open]);
-
-  const handleOpenReadMode = () => {
-    setOpen(false);
-    openReadMode();
-  };
 
   return (
     <>
@@ -117,7 +92,10 @@ export const MobileMenu = ({ open, setOpen, headerHeight }: MobileMenuProps) => 
               borderBottom: '1px solid rgba(242, 243, 247, 0.16)',
             }}
           >
-            <Typography variant="subheader1" sx={{ color: '#F1F1F3' }}>
+            <Typography
+              variant="subheader1"
+              sx={{ color: '#F1F1F3', paddingLeft: 4, fontSize: 20 }}
+            >
               <Trans>Menu</Trans>
             </Typography>
             <IconButton
@@ -138,53 +116,8 @@ export const MobileMenu = ({ open, setOpen, headerHeight }: MobileMenuProps) => 
 
         {!isLanguagesListOpen ? (
           <>
-            <MenuItemsWrapper title={<Trans>Menu</Trans>}>
+            <MenuItemsWrapper title={''}>
               <NavItems setOpen={setOpen} />
-            </MenuItemsWrapper>
-            <MenuItemsWrapper title={<Trans>Global settings</Trans>}>
-              <List>
-                <DarkModeSwitcher />
-                {PROD_ENV && <TestNetModeSwitcher />}
-                <LanguageListItem onClick={() => setIsLanguagesListOpen(true)} />
-              </List>
-            </MenuItemsWrapper>
-            <MenuItemsWrapper title={<Trans>Links</Trans>}>
-              <List>
-                <ListItem sx={{ cursor: 'pointer', color: '#F1F1F3' }} onClick={handleOpenReadMode}>
-                  <ListItemText>
-                    <Trans>Watch wallet</Trans>
-                  </ListItemText>
-                </ListItem>
-                <ListItem
-                  sx={{ color: '#F1F1F3' }}
-                  component={Link}
-                  href={'/staking'}
-                  onClick={() => setOpen(false)}
-                >
-                  <ListItemText>
-                    <Trans>Safety Module</Trans>
-                  </ListItemText>
-                </ListItem>
-                <ListItem
-                  sx={{ color: '#F1F1F3' }}
-                  component={Link}
-                  href={'/v3-migration'}
-                  onClick={() => setOpen(false)}
-                >
-                  <ListItemText>
-                    <Trans>Migrate to Aave V3</Trans>
-                  </ListItemText>
-                </ListItem>
-                {moreNavigation.map((item, index) => (
-                  <ListItem component={Link} href={item.link} sx={{ color: '#F1F1F3' }} key={index}>
-                    <ListItemIcon sx={{ minWidth: 'unset', mr: 3 }}>
-                      <SvgIcon sx={{ fontSize: '20px', color: '#F1F1F3' }}>{item.icon}</SvgIcon>
-                    </ListItemIcon>
-
-                    <ListItemText>{i18n._(item.title)}</ListItemText>
-                  </ListItem>
-                ))}
-              </List>
             </MenuItemsWrapper>
           </>
         ) : (
