@@ -211,13 +211,10 @@ const BorrowedPositionsListItemMobile = ({
   totalBorrows,
   totalBorrowsUSD,
   disableBorrow,
-  showSwitchButton,
-  disableSwitch,
   borrowAPY,
   incentives,
   variableDebtTokenAddress,
   disableRepay,
-  onDetbSwitchClick,
   onOpenBorrow,
   onOpenRepay,
 }: BorrowedPositionsListItemProps) => {
@@ -261,21 +258,9 @@ const BorrowedPositionsListItemMobile = ({
       </Row>
 
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mt: 5 }}>
-        {showSwitchButton ? (
-          <Button
-            disabled={disableSwitch}
-            variant="contained"
-            fullWidth
-            onClick={onDetbSwitchClick}
-            data-cy={`swapButton`}
-          >
-            <Trans>Swap</Trans>
-          </Button>
-        ) : (
-          <Button disabled={disableBorrow} variant="contained" onClick={onOpenBorrow} fullWidth>
-            <Trans>Borrow</Trans>
-          </Button>
-        )}
+        <Button disabled={disableBorrow} variant="contained" onClick={onOpenBorrow} fullWidth>
+          <Trans>Borrow</Trans>
+        </Button>
         <Button
           disabled={disableRepay}
           variant="outlined"
